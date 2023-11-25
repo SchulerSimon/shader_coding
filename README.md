@@ -1,9 +1,10 @@
 # shader_coding
-have a look at shadertoy.com to see how it works
+have a look at https://shadertoy.com to see how it works
 
 ### default.frag: 
 - just how I like to start my new shaders. 
-- the `vec2 uv = (fragCoord - 0.5 * iResolution.xy) / (iResolution.x > iResolution.y ? iResolution.y : iResolution.x);` makes sure, that aspect-ratio is capped by x and y (for 16:9 and 9:16 (smartphone etc.))
+- the fixes the aspect for any ratio, also smartphones and tablets
+- https://www.shadertoy.com/view/mtdBzr
 
 ### hashes.frag: 
 - just a collecton of hash-functions that I find useful
