@@ -34,6 +34,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     
     vec3 col = vec3(0.0);
     
+    float t = iTime + hash11(1.283) * 100.0;
+    
     // some constants
     float planet_thickness = 0.007;
     float planet_halo_thickness = 0.007;
@@ -51,25 +53,25 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     col = max(col, vec3(planet0_halo2.z) * vec3(1.0, 0.8, 0.78));
     col = max(col, vec3(planet0_halo3.z) * vec3(1.0, 0.8, 0.78));
     
-    vec3 planet1_halo = circle(uv, 0.1, planet_halo_thickness, 0.4, iTime / 4.0, false);
-    vec3 planet1 = circle(uv - planet1_halo.xy, 0.004, planet_thickness, 1.0, iTime, true);
+    vec3 planet1_halo = circle(uv, 0.1, planet_halo_thickness, 0.4, t / 4.0, false);
+    vec3 planet1 = circle(uv - planet1_halo.xy, 0.004, planet_thickness, 1.0, t, true);
     col = max(col, vec3(planet1_halo.z) * vec3(1.0, 0.8, 0.75));
     col = max(col, vec3(planet1.z) * vec3(0.9, 0.71, 0.66));
     
-    vec3 planet2_halo = circle(uv, 0.23, planet_halo_thickness, 0.35, iTime / 7.5, false);
-    vec3 planet2 = circle(uv - planet2_halo.xy, 0.004, planet_thickness, 1.0, iTime, true);
+    vec3 planet2_halo = circle(uv, 0.23, planet_halo_thickness, 0.35, t / 7.5, false);
+    vec3 planet2 = circle(uv - planet2_halo.xy, 0.004, planet_thickness, 1.0, t, true);
     col = max(col, vec3(planet2_halo.z) * vec3(1.0, 0.9, 0.9));
     col = max(col, vec3(planet2.z) * vec3(1.0, 0.9, 0.9));
     
-    vec3 moon2_halo = circle(uv - planet2_halo.xy, 0.035, moon_halo_thickness, 0.7, - iTime / 2.3, false);
-    vec3 moon2 = circle(uv - (planet2_halo.xy + moon2_halo.xy), 0.002, moon_thickness, 1.0, iTime, true);
+    vec3 moon2_halo = circle(uv - planet2_halo.xy, 0.035, moon_halo_thickness, 0.7, - t / 2.3, false);
+    vec3 moon2 = circle(uv - (planet2_halo.xy + moon2_halo.xy), 0.002, moon_thickness, 1.0, t, true);
     col = max(col, vec3(moon2_halo.z));
     col = max(col, vec3(moon2.z));
     
-    vec3 planet3_halo = circle(uv, 0.43, planet_halo_thickness, 0.3, iTime / 10.1, false);
-    vec3 planet3 = circle(uv - planet3_halo.xy, 0.025, planet_thickness, 0.8, iTime / 3.7, true);
-    vec3 planet3_p_halo1 = circle(uv - planet3_halo.xy, 0.035, moon_halo_thickness, 0.5, iTime / 2.3, false);
-    vec3 planet3_p_halo2 = circle(uv - planet3_halo.xy, 0.045, moon_halo_thickness, 0.8, iTime / 2.3, false);
+    vec3 planet3_halo = circle(uv, 0.43, planet_halo_thickness, 0.3, t / 10.1, false);
+    vec3 planet3 = circle(uv - planet3_halo.xy, 0.025, planet_thickness, 0.8, t / 3.7, true);
+    vec3 planet3_p_halo1 = circle(uv - planet3_halo.xy, 0.035, moon_halo_thickness, 0.5, t / 2.3, false);
+    vec3 planet3_p_halo2 = circle(uv - planet3_halo.xy, 0.045, moon_halo_thickness, 0.8, t / 2.3, false);
     col = max(col, vec3(planet3_halo.z));
     col = max(col, vec3(planet3.z) * vec3(0.9, 1.0, 1.0));
     col = max(col, vec3(planet3_p_halo1.z));
@@ -86,11 +88,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     col = max(col, vec3(planet3b_halo4.z) * vec3(0.9, 0.9, 1.0) * 0.7);
     col = max(col, vec3(planet3b_halo5.z) * vec3(0.9, 0.9, 0.87) * 0.7);
     
-    vec3 planet4_halo = circle(uv, 0.8, planet_halo_thickness, 0.55, iTime / 17.3, false);
-    vec3 planet4 = circle(uv - planet4_halo.xy, 0.025, planet_thickness, 0.75, iTime / 3.7, true);
+    vec3 planet4_halo = circle(uv, 0.8, planet_halo_thickness, 0.55, t / 17.3, false);
+    vec3 planet4 = circle(uv - planet4_halo.xy, 0.025, planet_thickness, 0.75, t / 3.7, true);
     vec3 planet4_p_halo1 = vec3(0.0);
     for(float i = 0.0; i < 3.0; i ++ ) {
-        vec3 p4_p_h1 = circle(uv - planet4_halo.xy, (0.035 + i*0.005), moon_halo_thickness, 0.5 - 0.1 * i, iTime / (2.7 * ((hash11(i + 1.0) * 2.0) - 1.0)), false);
+        vec3 p4_p_h1 = circle(uv - planet4_halo.xy, (0.035 + i*0.005), moon_halo_thickness, 0.5 - 0.1 * i, t / (2.7 * ((hash11(i + 1.0) * 2.0) - 1.0)), false);
         vec3 p4_moon = circle(uv - (planet4_halo.xy + p4_p_h1.xy), 0.002, moon_thickness, 0.7, 0.0, true);
         planet4_p_halo1 = max(planet4_p_halo1, p4_p_h1);
         planet4_p_halo1 = max(planet4_p_halo1, p4_moon);
