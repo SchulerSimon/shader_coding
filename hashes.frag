@@ -1,3 +1,9 @@
+/*
+Author: Simon Schuler (https://github.com/SchulerSimon)
+
+MIT License
+*/
+
 #define PI 3.1415926
 
 float hash11(float t) {

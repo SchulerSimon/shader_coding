@@ -4,26 +4,31 @@ have a look at https://shadertoy.com to see how it works
 ### default.frag: 
 - just how I like to start my new shaders. 
 - the fixes the aspect for any ratio, also smartphones and tablets
-- https://www.shadertoy.com/view/mtdBzr
+<iframe frameborder="0" src="https://www.shadertoy.com/embed/mtdBzr?gui=true?paused=true" allowfullscreen=""></iframe>
 
 ### hashes.frag: 
 - just a collecton of hash-functions that I find useful
 - will be extended upon
 
+### sdfs.frag:
+- collection of sdfs
+- will be extended upon
+<iframe frameborder="0" src="https://www.shadertoy.com/embed/DtcBRN?gui=true?paused=true" allowfullscreen=""></iframe>
+
 ### grid_madness: 
 - just something that came while trying stuff, first ever project. 
-- https://www.shadertoy.com/view/mttcD2 
+<iframe frameborder="0" src="https://www.shadertoy.com/embed/mttcD2?gui=true?paused=true" allowfullscreen=""></iframe>
 
 ### stardust: 
 - tests with inputting last frame of a buffer (BufferA)
 - unlisted on shadertoy, because its not really fun to look at. 
-- https://www.shadertoy.com/view/mldcDf
+<iframe frameborder="0" src="https://www.shadertoy.com/embed/mldcDf?gui=true?paused=true" allowfullscreen=""></iframe>
 
 ### fireworks: 
-- my own take very similar to the YouTube-Video https://www.youtube.com/watch?v=xDxAnguEOn8 by The Art of Code
-- https://www.shadertoy.com/view/clycDd
+- my own take on fireworks, very similar to the YouTube-Video https://www.youtube.com/watch?v=xDxAnguEOn8 by The Art of Code
+<iframe frameborder="0" src="https://www.shadertoy.com/embed/clycDd?gui=true?paused=true" allowfullscreen=""></iframe>
 
 ### planets: 
-- inspired by the menu-screen of GRIS
+- inspired by the menu screen of GRIS
 - I wanted to make somethign that resembles planets and halos
-- https://www.shadertoy.com/view/dl3fzr
+<iframe frameborder="0" src="https://www.shadertoy.com/embed/dl3fzr?gui=true?paused=true" allowfullscreen=""></iframe>
