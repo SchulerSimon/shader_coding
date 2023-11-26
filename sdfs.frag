@@ -33,6 +33,25 @@ float circle_sdf(vec2 uv, float radius) {
 }
 
 /*
+Simple triangle sdf
+partly from https://iquilezles.org/articles/distfunctions2d/
+*/
+float triangle_sdf(vec2 uv, vec2 tip_offset, vec2 wh)
+{
+    uv -= tip_offset;
+    uv.x = abs(uv.x);
+    vec2 a = uv - wh*clamp( dot(uv,wh)/dot(wh,wh), 0.0, 1.0 );
+    vec2 b = uv - wh*vec2( clamp( uv.x/wh.x, 0.0, 1.0 ), 1.0 );
+    float s = -sign( wh.y );
+    vec2 d = min( vec2( dot(a,a), s*(uv.x*wh.y-uv.y*wh.x) ),
+    vec2( dot(b,b), s*(uv.y-wh.y)  ));
+    return -sqrt(d.x)*sign(d.y);
+}
+float triangle_sdf(vec2 uv, vec2 wh){
+    return triangle_sdf(uv, vec2(0., 0.), wh);
+}
+
+/*
 Rounds a given SDF, does not work properly for
 unions or intersections of multiple sdfs
 for smooth-union etc. use the functions below
@@ -41,6 +60,14 @@ from https://iquilezles.org/articles/distfunctions2d/
 float round_sdf(float shape, float radius)
 {
     return shape - radius;
+}
+
+/*
+hollows a given SDF
+from https://iquilezles.org/articles/distfunctions2d/
+*/
+float hollow_sdf(float shape, float radius) {
+    return abs(shape) - radius;
 }
 
 /*
