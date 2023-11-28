@@ -45,7 +45,7 @@ float segment(vec2 uv, vec2 a, vec2 b, float th) {
 
 float wave(vec2 uv, float id) {
     float d = 0.0;
-    float num_segments = 20.0;
+    float num_segments = 5.0;
     float segment_distance = 2.0 / num_segments;
     vec2 last_point = vec2(1.0, 0.0 + sequence_even(id));
     d += _dot(uv, last_point, 0.02);
@@ -94,6 +94,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     if (length(uv.y) < 1.5 / iResolution.y)col.g = 0.3;
     if (abs(length(uv.x) - 0.5) < 1.5 / iResolution.x)col.g = 0.3;
     if (abs(length(uv.y) - 0.5) < 1.5 / iResolution.x)col.g = 0.3;
+    
+    col += vec3(0.5, 0.1, 0.2);
     
     fragColor = vec4(col, 1.0);
 }
