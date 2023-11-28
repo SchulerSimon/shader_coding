@@ -6,23 +6,31 @@ MIT License
 
 #define PI 3.1415926
 
-float hash11(float t) {
-    return fract(sin(t * 6857.92) * 98.3);
+/*
+better hash than the fract(sin(t*x)*y), especially regarding distribution
+from https://www.shadertoy.com/view/4djSRW
+*/
+float hash11(float p)
+{
+    p = fract(p * 0.1031);
+    p *= p + 33.33;
+    p *= p + p;
+    return fract(p);
 }
 
-vec2 hash12(float t) {
+vec2 hash21(float t) {
     float x = fract(sin(t * 587.34) * 93.87);
     float y = fract(sin((t + x) * 877.021) * 276.345);
     return vec2(x, y);
 }
 
-vec2 hash12_polar(float t) {
-    vec2 rand = hash12(t);
+vec2 hash21_polar(float t) {
+    vec2 rand = hash21(t);
     rand.x *= 2.0 * PI;
     return vec2(sin(rand.x), cos(rand.x)) * rand.y;
 }
 
-float hash21(vec2 p) {
+float hash12(vec2 p) {
     p = fract(p * vec2(983.12, 372.97));
     p += dot(p, p + 498.32);
     return fract(p.x * p.y);

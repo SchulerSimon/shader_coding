@@ -15,11 +15,6 @@ float line_sdf(vec2 uv, vec2 a, vec2 b, float thickness) {
     float h = min(1.0, max(0.0, dot(uv - a, b - a) / dot(b - a, b - a)));
     return length(uv - a-(b - a) * h) - thickness;
 }
-
-/*
-Simple line sdf with thickness == 0.
-from https://iquilezles.org/articles/distfunctions2d/
-*/
 float line_sdf(vec2 uv, vec2 a, vec2 b) {
     return line_sdf(uv, a, b, 0.0);
 }
