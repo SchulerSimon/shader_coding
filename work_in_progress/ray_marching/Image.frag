@@ -13,7 +13,7 @@ My take on https://www.youtube.com/watch?v=PGtv-dBi2wE
 float get_dist(vec3 p) {
     // sphere is xyz and r in a vec4
     vec4 sphere = vec4(0, 2, 6, 1);
-    sphere.y += sin(iTime * 3.0);
+    sphere.y += sin(iTime * 3.5);
     float dist_sphere = length(p - sphere.xyz) - sphere.w;
     float dist_plane = p.y;
     float d = min(dist_sphere, dist_plane);
@@ -45,7 +45,7 @@ vec3 get_normal(vec3 p) {
 }
 
 float get_light(vec3 p, vec3 light_pos) {
-    light_pos.xz += vec2(sin(iTime), cos(iTime)) * 3.0;
+    light_pos.xz += vec2(sin(iTime), cos(iTime)) * 3.6;
     vec3 l = normalize(light_pos - p);
     vec3 n = get_normal(p);
     
