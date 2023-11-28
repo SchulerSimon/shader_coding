@@ -12,7 +12,8 @@ My take on https://www.youtube.com/watch?v=PGtv-dBi2wE
 
 float get_dist(vec3 p) {
     // sphere is xyz and r in a vec4
-    vec4 sphere = vec4(0, 1, 6, 1);
+    vec4 sphere = vec4(0, 2, 6, 1);
+    sphere.y += sin(iTime * 3.0);
     float dist_sphere = length(p - sphere.xyz) - sphere.w;
     float dist_plane = p.y;
     float d = min(dist_sphere, dist_plane);
@@ -43,15 +44,14 @@ vec3 get_normal(vec3 p) {
     return normalize(n);
 }
 
-float get_light(vec3 p) {
-    vec3 light_pos = vec3(0, 5, 6);
+float get_light(vec3 p, vec3 light_pos) {
     light_pos.xz += vec2(sin(iTime), cos(iTime)) * 3.0;
     vec3 l = normalize(light_pos - p);
     vec3 n = get_normal(p);
     
     float dif = clamp(dot(n, l), 0.0, 1.0);
     float d = ray_march(p + n*SURFACE_DISTANCE * 2.0, l);
-    if (d < length(light_pos - p))dif *= 0.1;
+    if (d < length(light_pos - p))dif *= 0.3;
     return dif;
 }
 
@@ -74,7 +74,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     
     vec3 p = ray_origin + ray_direction * d;
     
-    float dif = get_light(p);
+    vec3 light_pos1 = vec3(2, 5, 6);
+    vec3 light_pos2 = vec3(-4, 5, 6);
+    
+    float dif = get_light(p, light_pos1);
+    dif *= get_light(p, light_pos2);
     vec3 col = vec3(dif);
     
     fragColor = vec4(col, 1.0);
