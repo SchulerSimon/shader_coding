@@ -33,6 +33,9 @@ have a look at https://shadertoy.com to see how it works
 - I wanted to make somethign that resembles planets and halos
 - https://www.shadertoy.com/view/dl3fzr
 
+### möbius:
+- something that just emerged when I was trying to make something else, but its beautiful and I polished it a bit with color and background
+- https://www.shadertoy.com/view/Dl3fWB
 
 ## Embedding shaders into websites: 
 ```html

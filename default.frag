@@ -4,11 +4,11 @@ Author: Simon Schuler (https://github.com/SchulerSimon)
 MIT License
 */
 
-void mainImage(out vec4 fragColor, in vec2 fragCoord)
+void mainImage(out vec4 color, in vec2 pixel)
 {
     float uv_norm = iResolution.x > iResolution.y ? iResolution.y : iResolution.x;
     // uv normalization from -.5 to .5 no matter the aspect ratio
-    vec2 uv = (fragCoord - 0.5 * iResolution.xy) / uv_norm;
+    vec2 uv = (pixel - 0.5 * iResolution.xy) / uv_norm;
     // mouse normalization from -.5 to .5 no matter the aspect ratio
     vec2 uv_m = (iMouse.xy - 0.5 * iResolution.xy) / uv_norm;
     
@@ -29,5 +29,5 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     if (abs(length(uv.x) - 0.5) < 1.5 / iResolution.x)col.g = 0.3;
     if (abs(length(uv.y) - 0.5) < 1.5 / iResolution.x)col.g = 0.3;
     
-    fragColor = vec4(col, 1.0);
+    color = vec4(col, 1.0);
 }
